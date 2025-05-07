@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Геворкян Алина Константиновна. Курс валют</title>
+    <link rel="stylesheet" href="main.CSS">
+    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="icon" href="favicon-32x32.png">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+    <link rel="icon" href="favicon-32x32.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .currency-calculator {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .currency-calculator h2 {
+            text-align: center;
+        }
+
+        .currency-calculator label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        .currency-calculator input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .currency-calculator button {
+            margin-top: 15px;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .currency-calculator button:hover {
+            background-color: #0056b3;
+        }
+
+        #audChart {
+            max-width: 900px;
+            background-color: #120b0b;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<header class="site-header">
+    <div class="nav-container">
+        <img src="logo.png" alt="Логотип НПО Наука" class="header-logo">
+        <nav class="main-nav">
+            <a href="komp.html">О компании</a>
+            <a href="news.html">Новости</a>
+            <a href="curs.html" class="active">Курс валют</a>
+            <a href="contacts.html">Контактные данные</a>
+            <a href="video.html">Видео</a>
+        </nav>
+    </div>
+</header>
+
+<body>
+
+    <section class="main">
+        <div class="converter">
+                <div class="converter-block">
+                    <h2>Конвертер валюты из рубля в Австралийский доллар</h2>
+                    <div class="coverter-inputs-to">
+                        <input type="number" class="converter-input" placeholder="Рубли" id="input-from-ruble">
+                        <input type="number" class="converter-input" placeholder="Австралийский доллар" id="input-to-aud" disabled>
+                        <input class="converter-input button"  type="button" id="button-to" value="Конвертировать">
+                    </div>
+                   <div class="converter-inputs-from">
+                        <input type="number" class="converter-input" placeholder="Австралийский доллар" id="input-from-aud">
+                        <input type="number" class="converter-input" placeholder="Рубли" id="input-to-ruble" disabled>
+                        <input class="converter-input button"  type="button" id="button-from" value="Конвертировать">
+                   </div>
+                </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        &copy; Алина Геворкян, ФБИ-33, 2 курс, 2025
+    </footer>
+
+    <script>
+        let fromRuble = document.getElementById('input-from-ruble');
+        let toAUD = document.getElementById('input-to-aud');
+        let fromAUD = document.getElementById('input-from-aud');
+        let toRuble = document.getElementById('input-to-ruble');
+
+        document.getElementById('button-to').addEventListener('click', function() {
+            let convertedValue = fx(fromRuble.value).from("RUB").to("AUD");
+            toAUD.value = convertedValue.toFixed(2);
+        });
+
+        document.getElementById('button-from').addEventListener('click', function() {
+            let convertedValue = fx(fromAUD.value).from("AUD").to("RUB");
+            toRuble.value = convertedValue.toFixed(2);
+        }); 
+    </script>
+    <script src="https://www.cbr-xml-daily.ru/money.js"></script>
+</body>
+</html>
