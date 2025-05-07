@@ -73,9 +73,9 @@
         <div class="nav-container">
             <img src="logo.png" alt="Логотип НПО Наука" class="header-logo">
             <nav class="main-nav">
-                <a href="komp.html" class="active">О компании</a>
+                <a href="komp.html">О компании</a>
                 <a href="news.html">Новости</a>
-                <a href="curs.html">Курс валют</a>
+                <a href="curs.html" class="active">Курс валют</a>
                 <a href="contacts.html">Контактные данные</a>
                 <a href="video.html">Видео</a>
             </nav>
@@ -153,7 +153,8 @@
                         borderColor: 'black',
                     }]
                     },
-                    options: {
+                    options: { 
+                        responsive: true,
                     scales: {
                         x: { title: { display: true, text: 'Дата' } },
                         y: { title: { display: true, text: 'Курс' } }
