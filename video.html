@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Геворкян Алина Константиновна. НПО «Наука»</title>
+        <link rel="stylesheet" href="main.CSS">
+        <link rel="icon" href="favicon.ico">
+        <link rel="icon" href="favicon-16x16.png">
+        <link rel="icon" href="favicon-32x32.png">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+        <link rel="icon" href="favicon-32x32.png" type="image/x-icon">
+        <style>
+            .video-button {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .btn-watch {
+                display: inline-block;
+                padding: 12px 24px;
+                background-color: #003366;
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                text-decoration: none;
+                border-radius: 6px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            .btn-watch:hover {
+                background-color: #0055a5;
+                transform: translateY(-2px);
+            }
+
+            .video-container {
+                position: relative;
+                width: 70%;
+                padding-bottom: 30%; 
+                height: 0;
+                margin: 0 auto;
+                overflow: hidden;
+            }
+
+            .video-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            @media (max-width: 768px) {
+                .video-container {
+                    width: 100%;
+                    padding-bottom: 56%;
+                }
+
+                .btn-watch {
+                    width: 90%;
+                    font-size: 15px;
+                    padding: 10px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header class="site-header">
+            <div class="nav-container">
+                <img src="logo.png" alt="Логотип НПО Наука" class="header-logo">
+                <nav class="main-nav">
+                    <a href="komp.html">О компании</a>
+                    <a href="news.html">Новости</a>
+                    <a href="curs.html">Курс валют</a>
+                    <a href="contacts.html">Контактные данные</a>
+                    <a href="video.html" class="active">Видео</a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section class="video">
+                <h1 style="text-align: center;">Видео о НПО «Наука»</h1>
+                <div class="video-container" style="position: relative; width: 60%; padding-bottom: 30%; height: 0; margin: 0 auto; overflow: hidden;">
+                    <iframe 
+                        src="https://www.youtube.com/embed/w_NNCSU9_7s" 
+                        title="НПО «Наука» — Видео" 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+        
+                <div class="video-button">
+                    <a href="https://youtu.be/w_NNCSU9_7s?si=sH6ZXbHlZt0c9qgf" target="_blank" class="btn-watch">
+                        Смотреть на YouTube
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            &copy; Алина Геворкян, ФБИ-33, 2 курс, 2025
+        </footer>
+</body>
+</html>
