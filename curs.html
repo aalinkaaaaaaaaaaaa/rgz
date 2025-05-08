@@ -67,21 +67,23 @@
             h2 {
                 color: whitesmoke;
             }
-            </style>
+        </style>
     </head>
-    <header class="site-header">
-        <div class="nav-container">
-            <img src="logo.png" alt="Логотип НПО Наука" class="header-logo">
-            <nav class="main-nav">
-                <a href="komp.html">О компании</a>
-                <a href="news.html">Новости</a>
-                <a href="curs.html" class="active">Курс валют</a>
-                <a href="contacts.html">Контактные данные</a>
-                <a href="video.html">Видео</a>
-            </nav>
-        </div>
-    </header>
+
     <body>
+        <header class="site-header">
+            <div class="nav-container">
+                <img src="logo.png" alt="Логотип НПО Наука" class="header-logo">
+                <nav class="main-nav">
+                    <a href="komp.html">О компании</a>
+                    <a href="news.html">Новости</a>
+                    <a href="curs.html" class="active">Курс валют</a>
+                    <a href="contacts.html">Контактные данные</a>
+                    <a href="video.html">Видео</a>
+                </nav>
+            </div>
+        </header>
+
         <main>
             <div class="box">    
                 <h2>Конвертер валют (RUB ⇄ AUD)</h2>
@@ -95,6 +97,7 @@
             <h1>График курса AUD за последние 30 дней</h1>
             <canvas id="AUDChart"></canvas>
         </main>
+        
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
             let kursAUD = 0;
@@ -131,40 +134,72 @@
 
             window.onload = async function() {
                 await downloadkursAUD();
-                
+
                 const dates = [];
                 const rates = [];
+                const backgroundColors = [];
                 const today = new Date();
                 for (let i = 0; i < 30; i++) {
                     const date = new Date(today);
                     date.setDate(today.getDate() - (30 - i));
                     dates.push(date.toISOString().split("T")[0]);
                     rates.push((52.1 + Math.random() * 0.6).toFixed(2));
+                    backgroundColors.push('#003366'); // начальный цвет для всех столбцов
                 }
+
                 const ctx = document.getElementById('AUDChart').getContext('2d');
-                new Chart(ctx, {
+                const myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                    labels: dates,
-                    datasets: [{
-                        label: 'Курс AUD к RUB',
-                        data: rates,
-                        backgroundColor: '#003366',
-                        borderColor: 'black',
-                    }]
+                        labels: dates,
+                        datasets: [{
+                            label: 'Курс AUD к RUB',
+                            data: rates,
+                            backgroundColor: backgroundColors,
+                            borderColor: 'black',
+                            borderWidth: 1
+                        }]
                     },
-                    options: { 
+                    options: {
                         responsive: true,
-                    scales: {
-                        x: { title: { display: true, text: 'Дата' } },
-                        y: { title: { display: true, text: 'Курс' } }
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Дата'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Курс'
+                                }
+                            }
+                        },
+                        onClick: (event, elements) => {
+                            if (elements.length > 0) {
+                                const clickedElementIndex = elements[0].index;
+                                const date = myChart.data.labels[clickedElementIndex];
+                                const rate = myChart.data.datasets[0].data[clickedElementIndex];
+
+                                alert(`Дата: ${date}, Курс: ${rate}`);
+
+                                // Сброс всех цветов на стандартный
+                                myChart.data.datasets[0].backgroundColor = myChart.data.datasets[0].backgroundColor.map(() => '#003366');
+
+                                // Выделение выбранного столбца
+                                myChart.data.datasets[0].backgroundColor[clickedElementIndex] = 'rgba(0, 255, 0, 0.8)';
+
+                                myChart.update();
+                            }
+                        }
                     }
-                    }
-                })
+                });
             }
         </script>
+
+        <footer class="footer">
+            &copy; Алина Геворкян, ФБИ-33, 2 курс, 2025
+        </footer>
     </body>
-    <footer class="footer">
-        &copy; Алина Геворкян, ФБИ-33, 2 курс, 2025
-    </footer>
 </html>
